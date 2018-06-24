@@ -68,8 +68,8 @@ class App extends Component {
                                 )}
                             <Switch>
                                 <Route
-                                    exact
-                                    path="/:id"
+                                    // exact
+                                    path={process.env.PUBLIC_URL + "/:id"}
                                     render={props => (
                                         <RestaurantDetail
                                             {...props}

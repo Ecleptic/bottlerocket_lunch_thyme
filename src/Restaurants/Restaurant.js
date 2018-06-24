@@ -13,7 +13,7 @@ const originMarginSize = 6
 const Restaurant = ({ restaurant, windowWidth }) => {
     const computedWidth =
         windowWidth < 640
-            ? `${100}vw`
+            ? `${100}%`
             : `${originWidth * 2}px` || `${originWidth * 1.6}px`
 
     const computedHeight =
@@ -58,6 +58,7 @@ const Restaurant = ({ restaurant, windowWidth }) => {
         font-weight: bold;
         font-size: ${originFontSize * 1.6}px;
         margin: ${originMarginSize * 1.6}px, 0;
+        padding-left: 12px;
     `
     const Category = styled.p`
         position: absolute;
@@ -67,6 +68,7 @@ const Restaurant = ({ restaurant, windowWidth }) => {
         z-index: 2;
         font-size: ${originFontSize * 1.6}px;
         margin: ${originMarginSize * 1.6}px, 0;
+        padding-left: 12px;
     `
 
     const slug = slugify(restaurant.name)

@@ -31,16 +31,18 @@ body {
     height: 100vh;
     /* grid-column-gap: 7px; */
     grid-template-columns: repeat(2, 1fr);
+    -webkit-overflow-scrolling: touch;
 }
 
 .restaurantList {
     overflow-y: scroll;
     overflow-x: visible;
-    /* width: 49.5vh; */
+    /* height:100%; */
+    /* width: 49.5vw; */
 }
 
 .map {
-    position: relative;
+    position: static;
 }
 
 @media only screen and (max-width: 640px) {

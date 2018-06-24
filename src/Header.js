@@ -27,7 +27,7 @@ const Image = styled.img`
 const Header = () => {
     return (
         <HeaderDiv className="App-header">
-            <Link to="/">
+            <Link to={process.env.PUBLIC_URL + "/"}>
                 <Image src={logo} className="App-logo" alt="logo" />
             </Link>
         </HeaderDiv>

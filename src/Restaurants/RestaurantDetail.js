@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import MapContainer from "../Maps/MapContainer"
-import { getCurrentRestaurant } from "./actions"
+// import { getCurrentRestaurant } from "./actions"
 import styled from "styled-components"
 
 class RestaurantDetail extends Component {
@@ -10,23 +10,21 @@ class RestaurantDetail extends Component {
         details: {}
     }
 
-    componentDidUpdate(nextProps) {
-        if (nextProps.match.params.id !== this.props.match.params.id) {
-            const details = this.props.restaurants.restaurants.find(e => {
-                return (
-                    e.name ===
-                    this.props.lookupTable[this.props.match.params.id]
-                )
-            })
-            this.setState({ details })
-        }
-    }
-    componentWillMount() {
+    getCurrentRestaurant = () => {
         const details = this.props.restaurants.restaurants.find(e => {
             return e.name === this.props.lookupTable[this.props.match.params.id]
         })
         this.setState({ details })
+    }
 
+    componentDidUpdate(nextProps) {
+        if (nextProps.match.params.id !== this.props.match.params.id) {
+            this.getCurrentRestaurant()
+        }
+    }
+    componentWillMount() {
+        console.log(this.state)
+        this.getCurrentRestaurant()
         this.props.detailIsRendered(true)
     }
     componentWillUnmount() {
@@ -61,48 +59,54 @@ class RestaurantDetail extends Component {
                 margin-bottom: 26px;
             }
         `
-        const mapSize = { width: "100%", height: "300px" }
-        return (
-            <div style={mapSize}>
-                <div style={mapSize}>
-                    <MapContainer
-                        style={mapSize}
-                        lat={this.state.details.location.lat}
-                        lng={this.state.details.location.lng}
-                        info={{
-                            name: this.state.details.name,
-                            address: this.state.details.formattedAddress
-                        }}
-                    />
-                </div>
-                <TitleDiv>
-                    <h1>{this.state.details.name}</h1>
-                    <h3>{this.state.details.category}</h3>
-                </TitleDiv>
-
-                <RestaurantInfo>
-                    {this.state.details.location && (
-                        <p>
-                            {this.state.details.location.address}
-                            <br />
-                            {this.state.details.location.city}
-                            {", "}
-                            {this.state.details.location.state}{" "}
-                            {this.state.details.location.postalCode}
-                        </p>
-                    )}
-
-                    {this.state.details.contact && (
-                        <p>{this.state.details.contact.formattedPhone}</p>
-                    )}
-                    {this.state.details.contact &&
-                        // even if there's contact info, they might not have a twitter handle
-                        this.state.details.contact.twitter && (
-                            <p>@{this.state.details.contact.twitter}</p>
+        const mapSize = {  height: "300px" }
+        if (this.state.details) {
+            return (
+                <div style={mapSize, {width: "100%"}}>
+                    <div style={mapSize}>
+                        {this.state.details.location && (
+                            <MapContainer
+                                style={mapSize}
+                                lat={this.state.details.location.lat}
+                                lng={this.state.details.location.lng}
+                                info={{
+                                    name: this.state.details.name,
+                                    address: this.state.details.formattedAddress
+                                }}
+                            />
                         )}
-                </RestaurantInfo>
-            </div>
-        )
+                    </div>
+                    <TitleDiv>
+                        <h1>{this.state.details.name}</h1>
+                        <h3>{this.state.details.category}</h3>
+                    </TitleDiv>
+
+                    <RestaurantInfo>
+                        {this.state.details.location && (
+                            <p>
+                                {this.state.details.location.address}
+                                <br />
+                                {this.state.details.location.city}
+                                {", "}
+                                {this.state.details.location.state}{" "}
+                                {this.state.details.location.postalCode}
+                            </p>
+                        )}
+
+                        {this.state.details.contact && (
+                            <p>{this.state.details.contact.formattedPhone}</p>
+                        )}
+                        {this.state.details.contact &&
+                            // even if there's contact info, they might not have a twitter handle
+                            this.state.details.contact.twitter && (
+                                <p>@{this.state.details.contact.twitter}</p>
+                            )}
+                    </RestaurantInfo>
+                </div>
+            )
+        } else {
+            return null
+        }
     }
 }
 const mapStateToProps = state => ({
@@ -113,7 +117,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
-            getCurrentRestaurant
+            // getCurrentRestaurant
         },
         dispatch
     )
