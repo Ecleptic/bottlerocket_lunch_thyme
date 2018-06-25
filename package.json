@@ -2,7 +2,7 @@
     "name": "bottlerocket_lunch_tyme",
     "version": "1.0.0",
     "private": true,
-    "homepage": "https://https://lunchthyme.netlify.com/",
+    "homepage": "https://Ecleptic.github.io/bottlerocket_lunch_thyme",
     "dependencies": {
         "google-maps-react": "^2.0.2",
         "react": "^16.4.0",

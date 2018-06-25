@@ -18,7 +18,7 @@ const Restaurant = ({ restaurant, windowWidth }) => {
 
     const computedHeight =
         windowWidth < 640
-            ? `${originHeight * 1}px`
+            ? `${originHeight * 1.3}px`
             : `${originHeight * 2}px` || `${originHeight * 1.6}px`
 
     const StyledLink = styled(Link)`
