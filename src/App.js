@@ -1,17 +1,16 @@
-import React, { Component } from "react"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import { Provider } from "react-redux"
-import { applyMiddleware, createStore } from "redux"
-import { composeWithDevTools } from "redux-devtools-extension"
-import logger from "redux-logger"
-import thunk from "redux-thunk"
-import { save, load } from "redux-localstorage-simple"
+import { applyMiddleware, createStore } from 'redux'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import { Provider } from 'react-redux'
+import { save, load } from 'redux-localstorage-simple'
+import logger from 'redux-logger'
+import React, { Component } from 'react'
+import thunk from 'redux-thunk'
 
-import rootReducer from "./rootReducer"
-
-import Header from "./Header"
-import RestaurantList from "./Restaurants/RestaurantList"
-import RestaurantDetail from "./Restaurants/RestaurantDetail"
+import Header from './Header'
+import RestaurantDetail from './Restaurants/RestaurantDetail'
+import RestaurantList from './Restaurants/RestaurantList'
+import rootReducer from './rootReducer'
 
 const middleware = [logger, thunk]
 
@@ -23,23 +22,43 @@ const store = createStore(
 
 class App extends Component {
     state = {
-        windowHeight: "",
-        windowWidth: "",
+        isMobile: true,
+        windowHeight: '',
+        windowWidth: '',
         detailIsRendered: false,
-        currentRestaurant: ""
+        currentRestaurant: ''
     }
+
     componentWillMount = () => {
         this.getWindowSize()
+        this.updateDimensions()
+        window.addEventListener('resize', this.updateDimensions)
     }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateDimensions)
+    }
+
+    updateDimensions = () => {
+        if (window.matchMedia('(min-width: 640px)').matches) {
+            /* the viewport is at least 400 pixels wide */
+            this.setState({ isMobile: false })
+            console.log('the viewport is at least 400 pixels wide ')
+        } else {
+            this.setState({ isMobile: true })
+            /* the viewport is less than 400 pixels wide */
+            console.log('the viewport is less than 400 pixels wide ')
+        }
+    }
+
     getWindowSize = () => {
         const windowWidth =
             window.innerWidth ||
             document.documentElement.clientWidth ||
-            document.documentElement.getElementsByTagName("body")[0].clientWidth
+            document.documentElement.getElementsByTagName('body')[0].clientWidth
         const windowHeight =
             window.innerHeight ||
             document.documentElement.clientHeight ||
-            document.documentElement.getElementsByTagName("body")[0]
+            document.documentElement.getElementsByTagName('body')[0]
                 .clientHeight
 
         console.log(windowHeight, windowWidth)
@@ -47,7 +66,7 @@ class App extends Component {
     }
 
     detailIsRendered = detailIsRendered => {
-        console.log("detailIsRendered", detailIsRendered)
+        console.log('detailIsRendered', detailIsRendered)
         this.setState({ detailIsRendered })
     }
 
@@ -60,15 +79,15 @@ class App extends Component {
                         <div className="appContainer">
                             <RenderList
                                 detailIsRendered={this.state.detailIsRendered}
-                                windowWidth={this.state.windowWidth}
+                                // windowWidth={this.state.windowWidth}
+                                isMobile={this.state.isMobile}
                             />
                             {!this.state.detailIsRendered &&
-                                this.state.windowWidth > 640 && (
+                                !this.state.isMobile && (
                                     <h1>Please Select a Restaurant</h1>
                                 )}
                             <Switch>
                                 <Route
-                                    // exact
                                     path={`${process.env.PUBLIC_URL}/:id`}
                                     render={props => (
                                         <RestaurantDetail
@@ -88,18 +107,15 @@ class App extends Component {
     }
 }
 
-const RenderList = ({ detailIsRendered, windowWidth }) => {
-    console.log(detailIsRendered, windowWidth)
-    if (windowWidth > 640) {
+const RenderList = ({ detailIsRendered, isMobile }) => {
+    if (!isMobile) {
         return <RestaurantList />
-    } else if (windowWidth < 640) {
+    } else {
         if (!detailIsRendered) {
             return <RestaurantList />
         } else {
-            return <h1 />
+            return null
         }
-    } else {
-        return <h1>oops</h1>
     }
 }
 

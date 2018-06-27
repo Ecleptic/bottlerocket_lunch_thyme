@@ -25,8 +25,6 @@ class RestaurantList extends Component {
 
 const mapStateToProps = state => ({
     restaurants: state.restaurants.restaurants,
-    windowWidth: state.windowHeight,
-    windowHeight: state.windowWidth,
     currentRestaurant: state.restaurants.currentRestaurant
 
 })

@@ -28,11 +28,10 @@ export class MapContainer extends Component {
         return (
             <Map
                 style={{
-                    // width: "100%",
                     height: "300px",
                     padding: "0",
-                    margin: '0',
-                    position: "relative",
+                    margin: "0",
+                    position: "relative"
                 }}
                 className={"map"}
                 google={this.props.google}
@@ -59,9 +58,7 @@ export class MapContainer extends Component {
                     marker={this.state.activeMarker}
                     visible={this.state.showingInfoWindow}
                 >
-                    <div>
-                        <h1>{this.state.selectedPlace.name}</h1>
-                    </div>
+                    <h2>{this.state.selectedPlace.name}</h2>
                 </InfoWindow>
             </Map>
         )

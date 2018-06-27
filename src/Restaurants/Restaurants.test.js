@@ -1,8 +1,27 @@
 import React from "react"
-import ReactDOM from "react-dom"
+
+import App from "../App"
+import Restaurant from "./Restaurant"
+import RestaurantDetail from "./RestaurantDetail"
 import RestaurantList from "./RestaurantList"
 
-it("renders without crashing", () => {
-    const div = document.createElement("div")
-    ReactDOM.render(<RestaurantList />, div)
-})
+// it("matches the snapshot", () => {
+//     const app = <App />
+//     expect(app).toMatchSnapshot()
+// })
+
+// it("matches the snapshot", () => {
+//     const list = <RestaurantList />
+//     expect(list).toMatchSnapshot()
+// })
+
+// it("matches the snapshot", () => {
+//     const RestaurantComponent = <Restaurant />
+//     expect(RestaurantComponent).toMatchSnapshot()
+// })
+
+// it("matches the snapshot", () => {
+//     const detail = <RestaurantDetail />
+//     expect(detail).toMatchSnapshot()
+// })
+

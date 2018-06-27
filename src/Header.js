@@ -1,36 +1,36 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import styled from "styled-components"
+import { Link } from 'react-router-dom'
+import React from 'react'
+import styled from 'styled-components'
 
-import logo from "./assets/logo.svg"
+import logo from './assets/logo.svg'
 
-const HeaderDiv = styled.header`
+const StyledHeader = styled.header`
     background: #43e895;
-    padding-top: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80px;
+    height: 50px;
     padding-top: 10px;
-    @media (max-width: 640px) {
-        height: 50px;
+    @media (min-width: 640px) {
+        height: 80px;
     }
 `
-const Image = styled.img`
-    height: 50px;
 
-    @media (max-width: 640px) {
-        height: 17px;
+const Image = styled.img`
+    height: 17px;
+
+    @media (min-width: 640px) {
+        height: 50px;
     }
 `
 
 const Header = () => {
     return (
-        <HeaderDiv className="App-header">
-            <Link to={process.env.PUBLIC_URL + "/"}>
+        <StyledHeader className="App-header">
+            <Link to={process.env.PUBLIC_URL + '/'}>
                 <Image src={logo} className="App-logo" alt="logo" />
             </Link>
-        </HeaderDiv>
+        </StyledHeader>
     )
 }
 

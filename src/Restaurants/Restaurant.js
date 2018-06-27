@@ -1,74 +1,67 @@
-import { connect } from "react-redux"
-import { Link } from "react-router-dom"
-import React from "react"
-import styled from "styled-components"
+import { Link } from 'react-router-dom'
+import React from 'react'
+import styled from 'styled-components'
 
-import { slugify } from "./actions"
+import { slugify } from './actions'
 
-const originHeight = 180
-const originWidth = 320
-const originFontSize = 12
-const originMarginSize = 6
+const Restaurant = ({ restaurant }) => {
+    const categoryTitleStyles = `color: #ffffff;
+        font-size: 20px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        padding-left: 12px;
+        position: absolute;
+        text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+        z-index: 2;`
 
-const Restaurant = ({ restaurant, windowWidth }) => {
-    const computedWidth =
-        windowWidth < 640
-            ? `${100}%`
-            : `${originWidth * 2}px` || `${originWidth * 1.6}px`
-
-    const computedHeight =
-        windowWidth < 640
-            ? `${originHeight * 1.3}px`
-            : `${originHeight * 2}px` || `${originHeight * 1.6}px`
+    const Title = styled.h2`
+        bottom: 24px;
+        font-weight: bold;
+        ${categoryTitleStyles};
+    `
+    const Category = styled.p`
+        bottom: 6px;
+        ${categoryTitleStyles};
+    `
 
     const StyledLink = styled(Link)`
-        position: relative;
         display: block;
+        height: 180px;
         overflow: hidden;
-        width: ${computedWidth};
-        height: ${computedHeight};
+        position: relative;
+        width: 100%;
+        @media (min-width: 640px) {
+            height: auto;
+        }
     `
 
     const Gradient = styled.div`
-        display: inline-block;
         background: linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0) 10%,
             rgba(0, 0, 0, 0) 10%,
             rgba(0, 0, 0, 0.65) 80%
         );
+        bottom: 0;
+        display: flex;
+        height: 180px;
+        width: 100%;
         z-index: 1;
-        height: ${computedHeight};
-        width: ${computedWidth};
+        @media (min-width: 640px) {
+            height: auto;
+        }
     `
+
     const Image = styled.img`
-        position: relative;
-        z-index: -1;
-        top: 0;
+        height: 180px;
         left: 0;
-        height: ${computedHeight};
-        width: ${computedWidth};
-    `
-    const Title = styled.p`
-        position: absolute;
-        bottom: ${originMarginSize * 4}px;
-        color: #ffffff;
-        text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
-        z-index: 2;
-        font-weight: bold;
-        font-size: ${originFontSize * 1.6}px;
-        margin: ${originMarginSize * 1.6}px, 0;
-        padding-left: 12px;
-    `
-    const Category = styled.p`
-        position: absolute;
-        bottom: ${originMarginSize}px;
-        color: #ffffff;
-        text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
-        z-index: 2;
-        font-size: ${originFontSize * 1.6}px;
-        margin: ${originMarginSize * 1.6}px, 0;
-        padding-left: 12px;
+        position: relative;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+        @media (min-width: 640px) {
+            height: auto;
+        }
     `
 
     const slug = slugify(restaurant.name)
@@ -86,9 +79,4 @@ const Restaurant = ({ restaurant, windowWidth }) => {
     )
 }
 
-const mapStateToProps = state => ({
-    windowWidth: state.restaurants.windowHeight,
-    windowHeight: state.restaurants.windowWidth
-})
-
-export default connect(mapStateToProps)(Restaurant)
+export default Restaurant

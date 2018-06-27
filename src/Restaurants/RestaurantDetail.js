@@ -1,9 +1,9 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
-import MapContainer from "../Maps/MapContainer"
-// import { getCurrentRestaurant } from "./actions"
-import styled from "styled-components"
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import React, { Component } from 'react'
+
+import MapContainer from '../Maps/MapContainer'
+import styled from 'styled-components'
 
 class RestaurantDetail extends Component {
     state = {
@@ -22,35 +22,39 @@ class RestaurantDetail extends Component {
             this.getCurrentRestaurant()
         }
     }
+
     componentWillMount() {
-        console.log(this.state)
         this.getCurrentRestaurant()
         this.props.detailIsRendered(true)
     }
+
     componentWillUnmount() {
         this.props.detailIsRendered(false)
     }
 
     render() {
-        const originFontSize = 12
+        const ParentDiv = styled.div`
+            height: 300;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        `
 
         const TitleDiv = styled.div`
             background: #34b379;
             color: #ffffff;
             margin: 0;
-            /* padding: 1rem; */
-            height: 60px /* 80px*/;
+            height: 60px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding-left: 12px;
             h1 {
-                font-size: /*${16 * 1.6}*/16px;
+                font-size: 16px;
                 font-weight: bold;
             }
             h3 {
-                font-size: /*${12 * 1.6}*/12px;
-                /* font-size: 12px; */
+                font-size: 12px;
             }
         `
         const RestaurantInfo = styled.div`
@@ -59,14 +63,23 @@ class RestaurantDetail extends Component {
                 margin-bottom: 26px;
             }
         `
-        const mapSize = {  height: "300px" }
+        const Anchor = styled.a`
+            color: #2a2a2a;
+            text-decoration: none;
+        `
+
         if (this.state.details) {
             return (
-                <div style={mapSize, {width: "100%"}}>
-                    <div style={mapSize}>
+                <ParentDiv>
+                    <TitleDiv>
+                        <h1>{this.state.details.name}</h1>
+                        <h3>{this.state.details.category}</h3>
+                    </TitleDiv>
+
+                    <div style={{ height: '300px', order: -1 }}>
                         {this.state.details.location && (
                             <MapContainer
-                                style={mapSize}
+                                style={{ height: '300px' }}
                                 lat={this.state.details.location.lat}
                                 lng={this.state.details.location.lng}
                                 info={{
@@ -76,33 +89,43 @@ class RestaurantDetail extends Component {
                             />
                         )}
                     </div>
-                    <TitleDiv>
-                        <h1>{this.state.details.name}</h1>
-                        <h3>{this.state.details.category}</h3>
-                    </TitleDiv>
 
                     <RestaurantInfo>
                         {this.state.details.location && (
                             <p>
                                 {this.state.details.location.address}
                                 <br />
-                                {this.state.details.location.city}
-                                {", "}
-                                {this.state.details.location.state}{" "}
+                                {this.state.details.location.city} ,
+                                {this.state.details.location.state}
                                 {this.state.details.location.postalCode}
                             </p>
                         )}
 
                         {this.state.details.contact && (
-                            <p>{this.state.details.contact.formattedPhone}</p>
+                            <a
+                                href={`tel:${
+                                    this.state.details.contact.formattedPhone
+                                }`}
+                            >
+                                <p>
+                                    {this.state.details.contact.formattedPhone}
+                                </p>
+                            </a>
                         )}
+
                         {this.state.details.contact &&
-                            // even if there's contact info, they might not have a twitter handle
                             this.state.details.contact.twitter && (
-                                <p>@{this.state.details.contact.twitter}</p>
+                                <Anchor
+                                    target="_blank"
+                                    href={`https://twitter.com/${
+                                        this.state.details.contact.twitter
+                                    }`}
+                                >
+                                    <p>@{this.state.details.contact.twitter}</p>
+                                </Anchor>
                             )}
                     </RestaurantInfo>
-                </div>
+                </ParentDiv>
             )
         } else {
             return null
