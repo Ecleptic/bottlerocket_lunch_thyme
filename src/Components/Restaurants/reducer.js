@@ -1,11 +1,8 @@
-import {
-    GET_RESTAURANTS,
-    slugify
-} from "./actions"
+import { GET_RESTAURANTS, slugify } from './actions'
 
 const initialState = {
     restaurants: [],
-    lookupTable: {},
+    lookupTable: {}
 }
 
 export default function(state = initialState, action) {

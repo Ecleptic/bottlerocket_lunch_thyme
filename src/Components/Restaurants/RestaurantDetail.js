@@ -10,11 +10,9 @@ class RestaurantDetail extends Component {
         details: {}
     }
 
-    getCurrentRestaurant = () => {
-        const details = this.props.restaurants.restaurants.find(e => {
-            return e.name === this.props.lookupTable[this.props.match.params.id]
-        })
-        this.setState({ details })
+    componentWillMount() {
+        this.getCurrentRestaurant()
+        this.props.detailIsRendered(true)
     }
 
     componentDidUpdate(nextProps) {
@@ -23,13 +21,15 @@ class RestaurantDetail extends Component {
         }
     }
 
-    componentWillMount() {
-        this.getCurrentRestaurant()
-        this.props.detailIsRendered(true)
-    }
-
     componentWillUnmount() {
         this.props.detailIsRendered(false)
+    }
+
+    getCurrentRestaurant = () => {
+        const details = this.props.restaurants.restaurants.find(e => {
+            return e.name === this.props.lookupTable[this.props.match.params.id]
+        })
+        this.setState({ details })
     }
 
     render() {
@@ -40,7 +40,7 @@ class RestaurantDetail extends Component {
             flex-direction: column;
             padding-top: 50px;
             @media (min-width: 640px) {
-                height: 80px;
+                padding-top: 80px;
             }
         `
 

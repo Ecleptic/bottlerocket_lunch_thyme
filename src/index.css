@@ -38,11 +38,11 @@ body {
 }
 
 @media only screen and (max-width: 640px) {
+    .appContainer {
+        display: flex;
+    }
     .restaurantList {
         width: 100vh;
         padding-top: 50px;
-    }
-    .appContainer {
-        display: flex;
     }
 }

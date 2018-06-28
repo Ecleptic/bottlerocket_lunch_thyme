@@ -14,12 +14,6 @@ export function getRestaurants() {
     }
 }
 
-/**
- * @returns {slug}
- * @param {string} text
- * gets text, makes lowercase, kebab-case,
- * and removes apostrophes to use in url
- */
 export const slugify = text => {
     return text
         .toString()

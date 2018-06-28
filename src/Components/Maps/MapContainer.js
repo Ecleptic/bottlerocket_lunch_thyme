@@ -1,11 +1,11 @@
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react"
-import React, { Component } from "react"
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
+import React, { Component } from 'react'
 
 export class MapContainer extends Component {
     state = {
-        showingInfoWindow: true,
         activeMarker: {},
-        selectedPlace: {}
+        selectedPlace: {},
+        showingInfoWindow: true
     }
 
     onMarkerClick = (props, marker, e) =>
@@ -28,12 +28,12 @@ export class MapContainer extends Component {
         return (
             <Map
                 style={{
-                    height: "300px",
-                    padding: "0",
-                    margin: "0",
-                    position: "relative"
+                    height: '300px',
+                    padding: '0',
+                    margin: '0',
+                    position: 'relative'
                 }}
-                className={"map"}
+                className={'map'}
                 google={this.props.google}
                 initialCenter={{
                     lat: this.props.lat,

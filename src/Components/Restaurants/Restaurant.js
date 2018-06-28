@@ -36,17 +36,17 @@ const Restaurant = ({ restaurant }) => {
     `
 
     const Gradient = styled.div`
+        bottom: 0;
+        display: flex;
+        height: 180px;
+        width: 100%;
+        z-index: 1;
         background: linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0) 10%,
             rgba(0, 0, 0, 0) 10%,
             rgba(0, 0, 0, 0.65) 80%
         );
-        bottom: 0;
-        display: flex;
-        height: 180px;
-        width: 100%;
-        z-index: 1;
         @media (min-width: 640px) {
             height: auto;
         }

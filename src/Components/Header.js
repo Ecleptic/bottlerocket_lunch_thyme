@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import styled from 'styled-components'
 
-import logo from './assets/logo.svg'
+import logo from '../assets/logo.svg'
 
 const StyledHeader = styled.header`
     align-items: center;
@@ -22,7 +22,6 @@ const StyledHeader = styled.header`
 
 const Image = styled.img`
     height: 17px;
-
     @media (min-width: 640px) {
         height: 50px;
     }

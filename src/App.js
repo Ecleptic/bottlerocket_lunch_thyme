@@ -7,9 +7,9 @@ import logger from 'redux-logger'
 import React, { Component } from 'react'
 import thunk from 'redux-thunk'
 
-import Header from './Header'
-import RestaurantDetail from './Restaurants/RestaurantDetail'
-import RestaurantList from './Restaurants/RestaurantList'
+import Header from './Components/Header'
+import RestaurantDetail from './Components/Restaurants/RestaurantDetail'
+import RestaurantList from './Components/Restaurants/RestaurantList'
 import rootReducer from './rootReducer'
 
 const middleware = [logger, thunk]
@@ -22,52 +22,31 @@ const store = createStore(
 
 class App extends Component {
     state = {
-        isMobile: true,
-        windowHeight: '',
-        windowWidth: '',
+        currentRestaurant: '',
         detailIsRendered: false,
-        currentRestaurant: ''
+        isMobile: true
     }
 
     componentWillMount = () => {
-        this.getWindowSize()
         this.updateDimensions()
         window.addEventListener('resize', this.updateDimensions)
     }
+
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateDimensions)
-    }
-
-    updateDimensions = () => {
-        if (window.matchMedia('(min-width: 640px)').matches) {
-            /* the viewport is at least 400 pixels wide */
-            this.setState({ isMobile: false })
-            console.log('the viewport is at least 400 pixels wide ')
-        } else {
-            this.setState({ isMobile: true })
-            /* the viewport is less than 400 pixels wide */
-            console.log('the viewport is less than 400 pixels wide ')
-        }
-    }
-
-    getWindowSize = () => {
-        const windowWidth =
-            window.innerWidth ||
-            document.documentElement.clientWidth ||
-            document.documentElement.getElementsByTagName('body')[0].clientWidth
-        const windowHeight =
-            window.innerHeight ||
-            document.documentElement.clientHeight ||
-            document.documentElement.getElementsByTagName('body')[0]
-                .clientHeight
-
-        console.log(windowHeight, windowWidth)
-        this.setState({ windowHeight, windowWidth })
     }
 
     detailIsRendered = detailIsRendered => {
         console.log('detailIsRendered', detailIsRendered)
         this.setState({ detailIsRendered })
+    }
+
+    updateDimensions = () => {
+        if (window.matchMedia('(min-width: 640px)').matches) {
+            this.setState({ isMobile: false })
+        } else {
+            this.setState({ isMobile: true })
+        }
     }
 
     render() {
@@ -79,7 +58,6 @@ class App extends Component {
                         <div className="appContainer">
                             <RenderList
                                 detailIsRendered={this.state.detailIsRendered}
-                                // windowWidth={this.state.windowWidth}
                                 isMobile={this.state.isMobile}
                             />
                             {!this.state.detailIsRendered &&

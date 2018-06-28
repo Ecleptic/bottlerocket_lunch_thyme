@@ -1,6 +1,6 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
+import React, { Component } from "react"
 
 import { getRestaurants } from "./actions"
 import Restaurant from "./Restaurant"
@@ -10,7 +10,7 @@ class RestaurantList extends Component {
         const { getRestaurants } = this.props
         getRestaurants()
     }
-    componentDidMount() {}
+
     render() {
         const { restaurants } = this.props.restaurants
         return (
