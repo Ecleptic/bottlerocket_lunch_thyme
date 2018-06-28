@@ -81,7 +81,8 @@ class RestaurantDetail extends Component {
                     </TitleDiv>
 
                     <div style={{ height: '300px', order: -1 }}>
-                        {this.state.details.location && (
+                        {
+                            this.state.details.location && (
                             <MapContainer
                                 style={{ height: '300px' }}
                                 lat={this.state.details.location.lat}
@@ -91,7 +92,8 @@ class RestaurantDetail extends Component {
                                     address: this.state.details.formattedAddress
                                 }}
                             />
-                        )}
+                        )
+                        }
                     </div>
 
                     <RestaurantInfo>

@@ -1,7 +1,7 @@
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 import React, { Component } from 'react'
 
-export class MapContainer extends Component {
+class MapContainer extends Component {
     state = {
         activeMarker: {},
         selectedPlace: {},

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`All View components match snapshots matches the snapshot 1`] = `<App />`;
+
+exports[`All View components match snapshots matches the snapshot 2`] = `<Connect(RestaurantList) />`;
+
+exports[`All View components match snapshots matches the snapshot 3`] = `<Restaurant />`;
+
+exports[`All View components match snapshots matches the snapshot 4`] = `<Connect(RestaurantDetail) />`;
+
+exports[`All View components match snapshots matches the snapshot 5`] = `<Header />`;

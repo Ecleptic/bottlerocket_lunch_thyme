@@ -62,7 +62,9 @@ class App extends Component {
                             />
                             {!this.state.detailIsRendered &&
                                 !this.state.isMobile && (
-                                    <h1>Please Select a Restaurant</h1>
+                                    <h1 style={{ paddingTop: '80px' }}>
+                                        Please Select a Restaurant
+                                    </h1>
                                 )}
                             <Switch>
                                 <Route
