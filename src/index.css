@@ -13,9 +13,9 @@ html {
 
 body {
     margin: 0;
-    font-family: "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol';
     background: #ffffff;
     color: #2a2a2a;
 }
@@ -30,6 +30,7 @@ body {
 .restaurantList {
     overflow-y: scroll;
     overflow-x: visible;
+    padding-top: 80px;
 }
 
 .map {
@@ -39,6 +40,7 @@ body {
 @media only screen and (max-width: 640px) {
     .restaurantList {
         width: 100vh;
+        padding-top: 50px;
     }
     .appContainer {
         display: flex;

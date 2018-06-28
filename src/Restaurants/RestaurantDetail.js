@@ -38,6 +38,10 @@ class RestaurantDetail extends Component {
             width: 100%;
             display: flex;
             flex-direction: column;
+            padding-top: 50px;
+            @media (min-width: 640px) {
+                height: 80px;
+            }
         `
 
         const TitleDiv = styled.div`
