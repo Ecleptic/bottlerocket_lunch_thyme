@@ -148,5 +148,5 @@ export default class RestaurantDetail extends Component {
 RestaurantDetail.propTypes = {
     detailIsRendered: PropTypes.func,
     getCurrentRestaurant: PropTypes.func,
-    match: PropTypes.array
+    match: PropTypes.object
 }
