@@ -1,7 +1,7 @@
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+// import configureMockStore from 'redux-mock-store'
+// import thunk from 'redux-thunk'
 
-import { getRestaurants, slugify } from '../Restaurants/actions'
+// import { getRestaurants, slugify } from '../Restaurants/actions'
 import expectedResults from './expectedResults'
 
 const middlewares = [thunk]

@@ -2,9 +2,7 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import styled from 'styled-components'
 
-import { slugify } from './actions'
-
-const Restaurant = ({ restaurant }) => {
+const Restaurant = ({ restaurant, slug }) => {
     const categoryTitleStyles = `color: #ffffff;
         font-size: 20px;
         margin-bottom: 10px;
@@ -64,7 +62,6 @@ const Restaurant = ({ restaurant }) => {
         }
     `
 
-    const slug = slugify(restaurant.name)
     return (
         <StyledLink to={slug}>
             <Gradient>

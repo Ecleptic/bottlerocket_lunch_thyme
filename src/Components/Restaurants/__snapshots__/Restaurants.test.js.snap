@@ -2,7 +2,7 @@
 
 exports[`All View components match snapshots matches the snapshot 1`] = `<App />`;
 
-exports[`All View components match snapshots matches the snapshot 2`] = `<Connect(RestaurantList) />`;
+exports[`All View components match snapshots matches the snapshot 2`] = `<RestaurantList />`;
 
 exports[`All View components match snapshots matches the snapshot 3`] = `<Restaurant />`;
 

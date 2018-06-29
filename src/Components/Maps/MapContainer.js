@@ -31,7 +31,10 @@ class MapContainer extends Component {
                     height: '300px',
                     padding: '0',
                     margin: '0',
-                    position: 'relative'
+                    position: 'relative',
+                    container: {
+                        position: 'relative'
+                    }
                 }}
                 className={'map'}
                 google={this.props.google}
