@@ -1,4 +1,4 @@
-import PropTypes from 'prop_types'
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import { MyContext } from '../../Context'
@@ -145,7 +145,7 @@ export default class RestaurantDetail extends Component {
     }
 }
 
-RestaurantDetail.PropTypes = {
+RestaurantDetail.propTypes = {
     detailIsRendered: PropTypes.func,
     getCurrentRestaurant: PropTypes.func,
     match: PropTypes.array

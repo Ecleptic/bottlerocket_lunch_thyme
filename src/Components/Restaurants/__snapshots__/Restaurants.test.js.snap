@@ -6,6 +6,6 @@ exports[`All View components match snapshots matches the snapshot 2`] = `<Restau
 
 exports[`All View components match snapshots matches the snapshot 3`] = `<Restaurant />`;
 
-exports[`All View components match snapshots matches the snapshot 4`] = `<Connect(RestaurantDetail) />`;
+exports[`All View components match snapshots matches the snapshot 4`] = `<RestaurantDetail />`;
 
 exports[`All View components match snapshots matches the snapshot 5`] = `<Header />`;
