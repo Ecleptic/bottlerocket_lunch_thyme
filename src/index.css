@@ -30,7 +30,7 @@ body {
 .restaurantList {
     overflow-y: scroll;
     overflow-x: visible;
-    padding-top: 80px;
+    margin-top: 80px;
 }
 
 .map {
@@ -43,6 +43,6 @@ body {
     }
     .restaurantList {
         width: 100vh;
-        padding-top: 50px;
+        margin-top: 50px;
     }
 }

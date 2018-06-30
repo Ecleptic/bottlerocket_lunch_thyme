@@ -1,13 +1,14 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import RestaurantList from './Restaurants/RestaurantList'
 
-const RenderList = ({ detailIsRendered, isMobile, getRestaurants }) => {
+const RenderList = ({ detailIsRendered, isMobile, restaurants }) => {
     if (!isMobile) {
-        return <RestaurantList />
+        return <RestaurantList restaurants={restaurants} />
     } else {
         if (!detailIsRendered) {
-            return <RestaurantList />
+            return <RestaurantList restaurants={restaurants} />
         } else {
             return null
         }
@@ -15,3 +16,9 @@ const RenderList = ({ detailIsRendered, isMobile, getRestaurants }) => {
 }
 
 export default RenderList
+
+RenderList.propTypes = {
+    detailIsRendered: PropTypes.bool,
+    isMobile: PropTypes.bool,
+    restaurants: PropTypes.array
+}

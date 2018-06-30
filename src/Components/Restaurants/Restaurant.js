@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import React from 'react'
 import styled from 'styled-components'
@@ -77,3 +78,7 @@ const Restaurant = ({ restaurant, slug }) => {
 }
 
 export default Restaurant
+
+Restaurant.propTypes = {
+    restaurant: PropTypes.object
+}

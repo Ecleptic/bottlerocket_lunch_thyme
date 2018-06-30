@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { MyContext } from '../../Context'
 import MapContainer from '../Maps/MapContainer'
 import styled from 'styled-components'
 
@@ -27,9 +26,9 @@ export default class RestaurantDetail extends Component {
             width: 100%;
             display: flex;
             flex-direction: column;
-            padding-top: 50px;
+            margin-top: 50px;
             @media (min-width: 640px) {
-                padding-top: 80px;
+                margin-top: 80px;
             }
         `
 
@@ -63,90 +62,68 @@ export default class RestaurantDetail extends Component {
             text-decoration: none;
         `
 
-        return (
-            <MyContext.Consumer>
-                {context =>
-                    context.state.details ? (
-                        <ParentDiv context={context}>
-                            <TitleDiv>
-                                <h1>{context.state.details.name}</h1>
-                                <h3>{context.state.details.category}</h3>
-                            </TitleDiv>
+        return this.props.details ? (
+            <ParentDiv>
+                <TitleDiv>
+                    <h1>{this.props.details.name}</h1>
+                    <h3>{this.props.details.category}</h3>
+                </TitleDiv>
 
-                            <div style={{ height: '300px', order: -1 }}>
-                                {context.state.details.location && (
-                                    <MapContainer
-                                        style={{ height: '300px' }}
-                                        lat={context.state.details.location.lat}
-                                        lng={context.state.details.location.lng}
-                                        info={{
-                                            name: context.state.details.name,
-                                            address:
-                                                context.state.details
-                                                    .formattedAddress
-                                        }}
-                                    />
-                                )}
-                            </div>
+                <div style={{ height: '300px', order: -1 }}>
+                    {this.props.details.location && (
+                        <MapContainer
+                            style={{ height: '300px' }}
+                            lat={this.props.details.location.lat}
+                            lng={this.props.details.location.lng}
+                            info={{
+                                name: this.props.details.name,
+                                address: this.props.details.formattedAddress
+                            }}
+                        />
+                    )}
+                </div>
 
-                            <RestaurantInfo>
-                                {context.state.details.location && (
-                                    <p>
-                                        {context.state.details.location.address}
-                                        <br />
-                                        {context.state.details.location.city} ,
-                                        {context.state.details.location.state}
-                                        {
-                                            context.state.details.location
-                                                .postalCode
-                                        }
-                                    </p>
-                                )}
+                <RestaurantInfo>
+                    {this.props.details.location && (
+                        <p>
+                            {this.props.details.location.address}
+                            <br />
+                            {this.props.details.location.city} ,
+                            {this.props.details.location.state}
+                            {this.props.details.location.postalCode}
+                        </p>
+                    )}
 
-                                {context.state.details.contact && (
-                                    <a
-                                        href={`tel:${
-                                            context.state.details.contact
-                                                .formattedPhone
-                                        }`}
-                                    >
-                                        <p>
-                                            {
-                                                context.state.details.contact
-                                                    .formattedPhone
-                                            }
-                                        </p>
-                                    </a>
-                                )}
+                    {this.props.details.contact && (
+                        <a
+                            href={`tel:${
+                                this.props.details.contact.formattedPhone
+                            }`}
+                        >
+                            <p>{this.props.details.contact.formattedPhone}</p>
+                        </a>
+                    )}
 
-                                {context.state.details.contact &&
-                                    context.state.details.contact.twitter && (
-                                        <Anchor
-                                            target="_blank"
-                                            href={`https://twitter.com/${
-                                                context.state.details.contact
-                                                    .twitter
-                                            }`}
-                                        >
-                                            <p>
-                                                @{
-                                                    context.state.details
-                                                        .contact.twitter
-                                                }
-                                            </p>
-                                        </Anchor>
-                                    )}
-                            </RestaurantInfo>
-                        </ParentDiv>
-                    ) : null
-                }
-            </MyContext.Consumer>
-        )
+                    {this.props.details.contact &&
+                        this.props.details.contact.twitter && (
+                            <Anchor
+                                target="_blank"
+                                href={`https://twitter.com/${
+                                    this.props.details.contact.twitter
+                                }`}
+                            >
+                                <p>@{this.props.details.contact.twitter}</p>
+                            </Anchor>
+                        )}
+                </RestaurantInfo>
+            </ParentDiv>
+        ) : null
     }
 }
 
 RestaurantDetail.propTypes = {
     detailIsRendered: PropTypes.func,
     getCurrentRestaurant: PropTypes.func,
-    match: PropTypes.object
+    match: PropTypes.object,
+    details: PropTypes.object
 }
