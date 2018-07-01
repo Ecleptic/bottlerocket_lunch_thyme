@@ -4,7 +4,7 @@ import React from 'react'
 import Restaurant from './Restaurant'
 import slugify from '../../Utils/slugify'
 
-const RestaurantList = ({ restaurants }) => {
+export default function RestaurantList({ restaurants }) {
     return (
         <div className="restaurantList">
             {restaurants &&
@@ -22,8 +22,6 @@ const RestaurantList = ({ restaurants }) => {
         </div>
     )
 }
-
-export default RestaurantList
 
 RestaurantList.propTypes = {
     restaurants: PropTypes.array

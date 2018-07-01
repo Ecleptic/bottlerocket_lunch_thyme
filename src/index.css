@@ -37,6 +37,10 @@ body {
     position: static;
 }
 
+.translateIn {
+    transform: translate(100%);
+}
+
 @media only screen and (max-width: 640px) {
     .appContainer {
         display: flex;

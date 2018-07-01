@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import styled from 'styled-components'
 
-const Restaurant = ({ restaurant, slug }) => {
+export default function  Restaurant  ({ restaurant, slug })  {
     const categoryTitleStyles = `color: #ffffff;
         font-size: 20px;
         margin-bottom: 10px;
@@ -77,8 +77,8 @@ const Restaurant = ({ restaurant, slug }) => {
     )
 }
 
-export default Restaurant
 
 Restaurant.propTypes = {
-    restaurant: PropTypes.object
+    restaurant: PropTypes.object,
+    slug: PropTypes.string
 }

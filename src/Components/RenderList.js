@@ -3,7 +3,7 @@ import React from 'react'
 
 import RestaurantList from './Restaurants/RestaurantList'
 
-const RenderList = ({ detailIsRendered, isMobile, restaurants }) => {
+export default function  RenderList ({ detailIsRendered, isMobile, restaurants }) {
     if (!isMobile) {
         return <RestaurantList restaurants={restaurants} />
     } else {
@@ -15,7 +15,6 @@ const RenderList = ({ detailIsRendered, isMobile, restaurants }) => {
     }
 }
 
-export default RenderList
 
 RenderList.propTypes = {
     detailIsRendered: PropTypes.bool,

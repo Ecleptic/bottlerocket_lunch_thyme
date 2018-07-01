@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
 import MapContainer from '../Maps/MapContainer'
-import styled from 'styled-components'
 
 export default class RestaurantDetail extends Component {
     componentWillMount() {
-        this.props.detailIsRendered(true)
+        this.props.setRenderedDetail(true)
         this.props.getCurrentRestaurant(this.props.match.params.id)
     }
 
@@ -14,10 +14,12 @@ export default class RestaurantDetail extends Component {
         if (nextProps.match.params.id !== this.props.match.params.id) {
             this.props.getCurrentRestaurant(this.props.match.params.id)
         }
+        const detailsDiv = document.getElementById('detailsDiv')
+        detailsDiv.classList.remove('translateIn')
     }
 
     componentWillUnmount() {
-        this.props.detailIsRendered(false)
+        this.props.setRenderedDetail(false)
     }
 
     render() {
@@ -27,6 +29,7 @@ export default class RestaurantDetail extends Component {
             display: flex;
             flex-direction: column;
             margin-top: 50px;
+            transition: 1s ease-in-out;
             @media (min-width: 640px) {
                 margin-top: 80px;
             }
@@ -41,12 +44,14 @@ export default class RestaurantDetail extends Component {
             flex-direction: column;
             justify-content: center;
             padding-left: 12px;
-            h1 {
+            h2 {
                 font-size: 16px;
                 font-weight: bold;
             }
-            h3 {
+            p {
                 font-size: 12px;
+                margin: 0;
+                padding: 0;
             }
         `
 
@@ -63,10 +68,10 @@ export default class RestaurantDetail extends Component {
         `
 
         return this.props.details ? (
-            <ParentDiv>
+            <ParentDiv className="translateIn" id="detailsDiv">
                 <TitleDiv>
-                    <h1>{this.props.details.name}</h1>
-                    <h3>{this.props.details.category}</h3>
+                    <h2>{this.props.details.name}</h2>
+                    <p>{this.props.details.category}</p>
                 </TitleDiv>
 
                 <div style={{ height: '300px', order: -1 }}>
@@ -88,20 +93,21 @@ export default class RestaurantDetail extends Component {
                         <p>
                             {this.props.details.location.address}
                             <br />
-                            {this.props.details.location.city} ,
-                            {this.props.details.location.state}
+                            {this.props.details.location.city}
+                            {', '}
+                            {this.props.details.location.state}{' '}
                             {this.props.details.location.postalCode}
                         </p>
                     )}
 
                     {this.props.details.contact && (
-                        <a
+                        <Anchor
                             href={`tel:${
                                 this.props.details.contact.formattedPhone
                             }`}
                         >
                             <p>{this.props.details.contact.formattedPhone}</p>
-                        </a>
+                        </Anchor>
                     )}
 
                     {this.props.details.contact &&
@@ -122,7 +128,7 @@ export default class RestaurantDetail extends Component {
 }
 
 RestaurantDetail.propTypes = {
-    detailIsRendered: PropTypes.func,
+    setRenderedDetail: PropTypes.func,
     getCurrentRestaurant: PropTypes.func,
     match: PropTypes.object,
     details: PropTypes.object
