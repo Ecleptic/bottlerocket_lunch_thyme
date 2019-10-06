@@ -10,3 +10,8 @@ patch:
         patched: '2019-06-18T17:07:04.766Z'
     - react-scripts > jest > jest-cli > jest-config > jest-environment-jsdom > jsdom > request > extend:
         patched: '2019-06-18T17:07:04.766Z'
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - snyk > proxy-agent > https-proxy-agent:
+        patched: '2019-10-06T07:05:59.371Z'
+    - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
+        patched: '2019-10-06T07:05:59.371Z'
